@@ -1,0 +1,37 @@
+version: "3.7"
+services:
+  ubuntu:
+    image: ubuntu
+    container_name: ubuntu
+    entrypoint:
+      - tail
+      - -f
+      - /dev/null
+
+  client1:
+    build: ./
+    image: client-golang
+    container_name: client1
+
+  client2:
+    build: ./
+    image: client-golang
+    container_name: client2
+
+  client3:
+    build: ./
+    image: client-golang
+    container_name: client3
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    volumes:
+      - ${PWD}/prometheus.yml:/etc/prometheus/prometheus.yml
+    expose:
+      - "9090"
+    ports:
+      - target: 9090
+        published: 9090
+        protocol: tcp
+        mode: host

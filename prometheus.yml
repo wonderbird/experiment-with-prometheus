@@ -24,10 +24,10 @@ scrape_configs:
     scrape_interval: 5s
 
     static_configs:
-      - targets: ['172.17.0.2:8080', '172.17.0.2:8081']
+      - targets: ['client1:8080', 'client2:8080']
         labels:
           group: 'production'
 
-      - targets: ['172.17.0.2:8082']
+      - targets: ['client3:8080']
         labels:
           group: 'canary'
