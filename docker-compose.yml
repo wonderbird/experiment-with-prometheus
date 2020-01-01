@@ -1,12 +1,12 @@
 version: "3.7"
 services:
-  ubuntu:
-    image: ubuntu
-    container_name: ubuntu
-    entrypoint:
-      - tail
-      - -f
-      - /dev/null
+#  ubuntu:
+#    image: ubuntu
+#    container_name: ubuntu
+#    entrypoint:
+#      - tail
+#      - -f
+#      - /dev/null
 
   client1:
     build: ./
@@ -28,6 +28,7 @@ services:
     container_name: prometheus
     volumes:
       - ${PWD}/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ${PWD}/prometheus.rules.yml:/etc/prometheus/prometheus.rules.yml
     expose:
       - "9090"
     ports:
