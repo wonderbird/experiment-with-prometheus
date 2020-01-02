@@ -9,17 +9,17 @@ services:
 #      - /dev/null
 
   client1:
-    build: ./
+    build: ./client_golang_docker
     image: client-golang
     container_name: client1
 
   client2:
-    build: ./
+    build: ./client_golang_docker
     image: client-golang
     container_name: client2
 
   client3:
-    build: ./
+    build: ./client_golang_docker
     image: client-golang
     container_name: client3
 
