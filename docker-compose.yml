@@ -1,12 +1,14 @@
 version: "3.7"
 services:
-#  ubuntu:
-#    image: ubuntu
-#    container_name: ubuntu
-#    entrypoint:
-#      - tail
-#      - -f
-#      - /dev/null
+  ubuntu-analysis-helper:
+    build: ./ubuntu-analysis-helper
+    image: ubuntu-analysis-helper
+    container_name: ubuntu-analysis-helper
+
+  sample-metrics-generator:
+    build: ./sample-metrics-generator
+    image: sample-metrics-generator
+    container_name: sample-metrics-generator
 
   client1:
     build: ./client_golang_docker
