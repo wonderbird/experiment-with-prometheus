@@ -24,7 +24,15 @@ Once the system is running you can...
 * Modify the `sample-metrics-generator` source code. Then rebuild an restart only that container by typing
   `docker-compose up -d --no-deps --build sample-metrics-generator`
 
+## Sample Screenshot
+
+This screenshot shows sample data visualized by the Grafana board "Internet Connection":
+
+![Sample Screenshot of Internet Connection Monitoring](docs/sample.png)
+
 ## References
 
 * https://prometheus.io (you can run the tutorial including Grafana with the setup presented here)
 * https://grafana.com
+* https://github.com/prometheus/blackbox_exporter
+* https://github.com/jbarratt/prometheus_sitemon

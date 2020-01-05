@@ -1,39 +1,56 @@
 version: "3.7"
 services:
+
+  # An ubuntu container with cURL installed
+  # Use this for debugging the network
   ubuntu-analysis-helper:
     build: ./ubuntu-analysis-helper
     image: ubuntu-analysis-helper
     container_name: ubuntu-analysis-helper
 
+  # A sample C# ASP.NET Core application
+  # Create a custom metric
   sample-metrics-generator:
     build: ./sample-metrics-generator
     image: sample-metrics-generator
     container_name: sample-metrics-generator
 
+  # The client_golang referred to by the Prometheus Getting Started Guide
   client1:
     build: ./client_golang_docker
     image: client-golang
     container_name: client1
 
+  # The client_golang referred to by the Prometheus Getting Started Guide
   client2:
     build: ./client_golang_docker
     image: client-golang
     container_name: client2
 
+  # The client_golang referred to by the Prometheus Getting Started Guide
   client3:
     build: ./client_golang_docker
     image: client-golang
     container_name: client3
 
+  # Prometheus
   prometheus:
     image: prom/prometheus
     container_name: prometheus
     volumes:
-      - ${PWD}/prometheus.yml:/etc/prometheus/prometheus.yml
-      - ${PWD}/prometheus.rules.yml:/etc/prometheus/prometheus.rules.yml
+      - ${PWD}/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ${PWD}/prometheus/prometheus.rules.yml:/etc/prometheus/prometheus.rules.yml
     ports:
       - 9090:9090
 
+  # Blackbox prober allows Prometheus to record ICMP ping statistics
+  blackbox-exporter:
+    image: prom/blackbox-exporter
+    container_name: blackbox-exporter
+    volumes:
+      - ${PWD}/blackbox-exporter/config.yml:/etc/blackbox_exporter/config.yml
+
+  # Fancy visualization for time series providers like Prometheus
   grafana:
     image: grafana/grafana
     container_name: grafana
