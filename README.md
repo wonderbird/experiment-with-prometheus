@@ -8,7 +8,9 @@ The software in this project is highly experimental. Its only purpose is for me 
 
 ## Usage
 
-Running `docker-compose up` in this directory will build the container images and startup the system.
+After having pulled this repository, you need to `git submodule init` and `git sumodule update` from the cloned directory.
+
+Then run `docker-compose up` to build the container images and startup the system.
 
 Once the system is running you can...
 
@@ -19,6 +21,8 @@ Once the system is running you can...
 * Enter the ubuntu-analysis-helper container to query the other containers in the network:
   * `docker exec -it ubuntu-analysis-helper /bin/bash`
   * `root@...:/# curl sample-metrics-generator/metrics`
+* Modify the `sample-metrics-generator` source code. Then rebuild an restart only that container by typing
+  `docker-compose up -d --no-deps --build sample-metrics-generator`
 
 ## References
 
