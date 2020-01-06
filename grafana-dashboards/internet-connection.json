@@ -19,12 +19,37 @@
   "links": [],
   "panels": [
     {
+      "dashboardFilter": "",
+      "dashboardTags": [],
+      "datasource": null,
+      "folderId": null,
+      "gridPos": {
+        "h": 3,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 10,
+      "limit": 10,
+      "nameFilter": "",
+      "onlyAlertsOnDashboard": true,
+      "options": {},
+      "show": "current",
+      "sortOrder": 1,
+      "stateFilter": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Alerts",
+      "transparent": true,
+      "type": "alertlist"
+    },
+    {
       "datasource": null,
       "gridPos": {
         "h": 9,
         "w": 24,
         "x": 0,
-        "y": 0
+        "y": 3
       },
       "id": 8,
       "options": {
@@ -74,6 +99,42 @@
       "type": "gauge"
     },
     {
+      "alert": {
+        "alertRuleTags": {},
+        "conditions": [
+          {
+            "evaluator": {
+              "params": [
+                2
+              ],
+              "type": "gt"
+            },
+            "operator": {
+              "type": "and"
+            },
+            "query": {
+              "params": [
+                "A",
+                "5m",
+                "now"
+              ]
+            },
+            "reducer": {
+              "params": [],
+              "type": "max"
+            },
+            "type": "query"
+          }
+        ],
+        "executionErrorState": "alerting",
+        "for": "1m",
+        "frequency": "15s",
+        "handler": 1,
+        "message": "",
+        "name": "95th Percentile of Duration of a Page Load Over 5 Minutes alert",
+        "noDataState": "no_data",
+        "notifications": []
+      },
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
@@ -85,7 +146,7 @@
         "h": 13,
         "w": 16,
         "x": 0,
-        "y": 9
+        "y": 12
       },
       "hiddenSeries": false,
       "id": 2,
@@ -122,20 +183,11 @@
       ],
       "thresholds": [
         {
-          "colorMode": "warning",
-          "fill": true,
-          "line": true,
-          "op": "gt",
-          "value": 1,
-          "yaxis": "left"
-        },
-        {
           "colorMode": "critical",
           "fill": true,
           "line": true,
           "op": "gt",
-          "value": 2,
-          "yaxis": "left"
+          "value": 2
         }
       ],
       "timeFrom": null,
@@ -186,7 +238,7 @@
         "h": 13,
         "w": 8,
         "x": 16,
-        "y": 9
+        "y": 12
       },
       "id": 6,
       "options": {
@@ -236,12 +288,12 @@
     "list": []
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Internet Connection",
   "uid": "beFAW3LZk",
-  "version": 10
+  "version": 20
 }
