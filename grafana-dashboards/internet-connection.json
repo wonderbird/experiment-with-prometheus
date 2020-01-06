@@ -21,16 +21,16 @@
     {
       "datasource": null,
       "gridPos": {
-        "h": 8,
+        "h": 9,
         "w": 24,
         "x": 0,
         "y": 0
       },
-      "id": 6,
+      "id": 8,
       "options": {
         "fieldOptions": {
           "calcs": [
-            "last"
+            "mean"
           ],
           "defaults": {
             "mappings": [],
@@ -61,7 +61,7 @@
       "pluginVersion": "6.5.2",
       "targets": [
         {
-          "expr": "probe_duration_seconds  ",
+          "expr": "quantile_over_time(0.95, probe_duration_seconds[5m])",
           "instant": true,
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -69,7 +69,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Duration of a Page Load",
+      "title": "95th Percentile of Duration of a Page Load During Past 5 Minutes",
       "transparent": true,
       "type": "gauge"
     },
@@ -82,13 +82,14 @@
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 16,
-        "w": 24,
+        "h": 13,
+        "w": 16,
         "x": 0,
-        "y": 8
+        "y": 9
       },
       "hiddenSeries": false,
       "id": 2,
+      "interval": "15s",
       "legend": {
         "avg": false,
         "current": false,
@@ -114,20 +115,12 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "probe_duration_seconds",
+          "expr": "quantile_over_time(0.95, probe_duration_seconds[5m])",
           "legendFormat": "{{instance}}",
           "refId": "A"
         }
       ],
       "thresholds": [
-        {
-          "colorMode": "critical",
-          "fill": true,
-          "line": true,
-          "op": "gt",
-          "value": 2,
-          "yaxis": "left"
-        },
         {
           "colorMode": "warning",
           "fill": true,
@@ -135,12 +128,20 @@
           "op": "gt",
           "value": 1,
           "yaxis": "left"
+        },
+        {
+          "colorMode": "critical",
+          "fill": true,
+          "line": true,
+          "op": "gt",
+          "value": 2,
+          "yaxis": "left"
         }
       ],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Duration of a Page Load",
+      "title": "95th Percentile of Duration of a Page Load Over 5 Minutes",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -178,6 +179,53 @@
         "align": false,
         "alignLevel": null
       }
+    },
+    {
+      "datasource": null,
+      "gridPos": {
+        "h": 13,
+        "w": 8,
+        "x": 16,
+        "y": 9
+      },
+      "id": 6,
+      "options": {
+        "fieldOptions": {
+          "calcs": [
+            "last"
+          ],
+          "defaults": {
+            "mappings": [],
+            "max": 2.5,
+            "min": 0,
+            "thresholds": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "override": {},
+          "values": false
+        },
+        "orientation": "auto",
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "6.5.2",
+      "targets": [
+        {
+          "expr": "probe_duration_seconds  ",
+          "instant": true,
+          "legendFormat": "{{instance}}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Latest Duration of a Page Load",
+      "transparent": true,
+      "type": "gauge"
     }
   ],
   "refresh": "1m",
@@ -188,12 +236,12 @@
     "list": []
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-30m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Internet Connection",
   "uid": "beFAW3LZk",
-  "version": 12
+  "version": 10
 }
