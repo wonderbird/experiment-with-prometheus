@@ -1,12 +1,8 @@
-# Configuration extracted from the prom/blackbox-exporter docker image
-# Adapted configuration to prefer IPv4
-# see https://www.robustperception.io/checking-for-http-200s-with-the-blackbox-exporter
-# and https://github.com/prometheus/blackbox_exporter/blob/master/example.yml
 modules:
   http_2xx:
     prober: http
     http:
-      preferred_ip_protocol: ip4
+      preferred_ip_protocol: "ip4"
       ip_protocol_fallback: false
   http_post_2xx:
     prober: http
